@@ -140,6 +140,8 @@ jobs:
         run: |
           docker pull arm64v8/ubuntu:20.04
           docker run --rm \
+            # 添加 DEBIAN_FRONTEND 环境变量
+            -e DEBIAN_FRONTEND=noninteractive \
             -v ${{ github.workspace }}:/app \
             -w /app \
             arm64v8/ubuntu:20.04 \
@@ -147,6 +149,7 @@ jobs:
             echo 'Starting build inside Ubuntu 20.04 container...'
             ldd --version
 
+            # 使用 -y 确保所有 apt-get 命令都是非交互式的
             apt update
             apt install -y meson ninja-build nasm ffmpeg libsdl2-2.0-0 \
                libsdl2-dev libavcodec-dev libavdevice-dev libavformat-dev \
@@ -170,6 +173,7 @@ jobs:
         with:
           name: build-linux-aarch64-intermediate
           path: release/work/build-linux-aarch64/dist-tar/
+
 
   build-win32:
     runs-on: ubuntu-latest
