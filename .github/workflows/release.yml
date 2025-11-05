@@ -122,7 +122,9 @@ jobs:
           path: release/work/build-linux-x86_64/dist-tar/
 
   build-linux-aarch64:
-    runs-on: ubuntu-20.04-arm
+    runs-on: ubuntu-20.04
+    container:
+      image: arm64v8/ubuntu:20.04
     steps:
       - name: Check architecture
         run: |
