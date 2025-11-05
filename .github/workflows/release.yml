@@ -140,7 +140,6 @@ jobs:
         run: |
           docker pull arm64v8/ubuntu:20.04
           docker run --rm \
-            # 添加 DEBIAN_FRONTEND 环境变量
             -e DEBIAN_FRONTEND=noninteractive \
             -v ${{ github.workspace }}:/app \
             -w /app \
